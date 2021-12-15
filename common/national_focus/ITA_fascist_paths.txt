@@ -1244,6 +1244,10 @@ shared_focus = {
 		}
 		completion_reward = {
 			add_ideas = ITA_fascist_trade_unions
+			swap_ideas = {
+				add_idea = ITA_mass_economic_instability_2
+				remove_idea = ITA_mass_economic_instability
+			}
 		}
 	}
 	
@@ -1316,7 +1320,7 @@ shared_focus = {
 	
 	shared_focus = {
 		id = ITA_dismantle_the_ncfsc
-		icon = GFX_goal_AUS_federalism
+		icon = GFX_USA_trust_busting
 		x = -1
 		y = 1
 		cost = 5
@@ -1350,7 +1354,34 @@ shared_focus = {
 			factor = 500
 		}
 		completion_reward = {
-			remove_ideas = ITA_mass_economic_instability_2
+			swap_ideas = {
+				add_idea = ITA_mass_economic_instability_2
+				remove_idea = ITA_mass_economic_instability
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
 		}
 	}
 	
@@ -1416,6 +1447,7 @@ shared_focus = {
 				remove_idea = ITA_fascist_trade_unions_2
 				add_idea = ITA_fascist_trade_unions_3
 			}
+			remove_ideas = ITA_mass_economic_instability_2
 		}
 	}
 	
@@ -1581,11 +1613,28 @@ shared_focus = {
 			factor = 500
 		}
 		completion_reward = {
+			remove_ideas = ITA_mass_economic_instability_2
 			add_resource = {
 				type = steel
-				amount = 8
+				amount = 4
 				state = 117
 			}
+			add_resource = {
+				type = steel
+				amount = 4
+				state = 882
+			}
+			add_resource = {
+				type = steel
+				amount = 4
+				state = 886
+			}
+			add_resource = {
+				type = steel
+				amount = 4
+				state = 880
+			}
+			
 		}
 	}
 	
@@ -1695,12 +1744,20 @@ shared_focus = {
 	
 	shared_focus = {
 		id = ITA_resources_in_ethiopia
-		icon = GFX_goal_generic_major_war
+		icon = GFX_goal_AUS_reform_the_pakt
 		x = -2
 		y = 1
 		cost = 5
 		
-		
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = ITA_party_division_is_less_than_50
+				check_variable = {
+					ITA_NFP_party_stability < 51
+				}
+			}
+			has_idea = ITA_socialist_revolt_2
+		}
 		prerequisite = { focus = ITA_fund_southern_steelworks }
 		prerequisite = {
 			focus = ITA_italian_militarism
@@ -1714,20 +1771,7 @@ shared_focus = {
 				target = ETH
 				type = puppet_wargoal_focus
 			}
-			271 = {
-				add_resource = {
-					type = oil
-					amount = 8
-				}
-				add_resource = {
-					type = rubber
-					amount = 9
-				}
-				add_resource = {
-					type = steel
-					amount = 8
-				}
-			}
+			
 		}
 	}
 
@@ -2210,7 +2254,36 @@ shared_focus = {
 			114 = {
 				add_resource = {
 					type = oil
-					amount = 8
+					amount = 12
+				}
+				add_building_construction = {
+					type = infrastructure 
+					level = 5
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 4
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_coastal = yes
+					}
 				}
 			}
 		}
@@ -2427,6 +2500,7 @@ shared_focus = {
 		}
 		completion_reward = {
 			add_country_leader_trait = descendants_of_rome
+			remove_ideas = ITA_mass_economic_instability_2
 		}
 	}
 	
@@ -2475,7 +2549,7 @@ shared_focus = {
 	
 	shared_focus = {
 		id = ITA_promote_nationalism
-		icon = GFX_ITA_nationalism
+		icon = GFX_goal_ITA_heart_of_eagle
 		x = 0
 		y = 1
 		cost = 5
@@ -2491,6 +2565,10 @@ shared_focus = {
 			swap_ideas = {
 				add_idea = Vendetta_Nazionale_2
 				remove_idea = Vendetta_Nazionale
+			}
+			swap_ideas = {
+				add_idea = ITA_mass_economic_instability_2
+				remove_idea = ITA_mass_economic_instability
 			}
 		}
 	}
@@ -2737,10 +2815,7 @@ shared_focus = {
 			factor = 1000
 		}
 		completion_reward = {
-			swap_ruler_traits = {
-				remove = fascist_propaganda
-				add = ovra
-			}
+			add_country_leader_trait = ovra
 		}
 	}
 	
@@ -2779,10 +2854,10 @@ shared_focus = {
 		
 		available = {
 			custom_trigger_tooltip = {
-				tooltip = ITA_party_division_is_less_than_25
-				# check_variable = {
-				# 	ITA_NFP_party_stability < 26
-				# }
+				tooltip = ITA_party_division_is_less_than_50
+				check_variable = {
+					ITA_NFP_party_stability < 51
+				}
 			}
 			has_idea = ITA_socialist_revolt_2
 		}
@@ -3378,7 +3453,7 @@ shared_focus = {
 	icon = GFX_goal_ITA_assert_the_kings_authority 
 	x = -2
 	y = 1
-	cost = 2
+	cost = 5
 	available_if_capitulated = yes
 	prerequisite = { focus = ITA_evolas_regime }
 	relative_position_id = ITA_evolas_regime
